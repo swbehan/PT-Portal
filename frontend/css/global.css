@@ -1,0 +1,44 @@
+body {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  overflow-x: hidden;
+}
+
+/* =============================================================================
+     HEADER & NAVBAR
+     ============================================================================= */
+
+header.heading {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.navbar {
+  background-color: black;
+}
+
+nav.navbar .navbar-brand {
+  padding-left: 30px;
+  font-size: 55px;
+  letter-spacing: 2px;
+  color: white;
+  text-shadow:
+    2px 1px 0px gray,
+    5px 2px 0px #2f4f4f;
+}
+
+#navbarSupportedContent .nav-link {
+  padding: 8px 30px;
+  font-size: 35px;
+  color: white;
+  text-shadow:
+    2px 1px 0px gray,
+    4px 1px 0px #2f4f4f;
+}
+
+#navbarSupportedContent .nav-link:hover {
+  text-decoration: underline white 5px;
+  text-underline-offset: 10px;
+}
