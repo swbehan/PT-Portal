@@ -38,6 +38,11 @@ nav.navbar .navbar-brand {
     4px 1px 0px #2f4f4f;
 }
 
+#navbarSupportedContent .nav-link.active {
+  text-decoration: underline white 5px;
+  text-underline-offset: 10px;
+}
+
 #navbarSupportedContent .nav-link:hover {
   text-decoration: underline white 5px;
   text-underline-offset: 10px;
