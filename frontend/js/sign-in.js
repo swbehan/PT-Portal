@@ -10,9 +10,6 @@ document.addEventListener('DOMContentLoaded', () => {
     animationMain.handleScroll('visible', '.sign-in'),
   );
   document.addEventListener('scroll', () =>
-    animationMain.handleScroll('visible', '.pt-portal-platform'),
-  );
-  document.addEventListener('scroll', () =>
     animationMain.handleScroll('visible', '.what-is-pt-portal'),
   );
 });

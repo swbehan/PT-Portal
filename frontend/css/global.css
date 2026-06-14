@@ -13,6 +13,11 @@ footer {
   background-color: black;
 }
 
+a {
+  color: black;
+  text-decoration: none;
+}
+
 /* =============================================================================
      HEADER & NAVBAR
    ============================================================================= */
@@ -27,7 +32,8 @@ header.heading {
   background-color: black;
 }
 
-nav.navbar .navbar-brand {
+nav.navbar .navbar-brand,
+footer span {
   padding-left: 30px;
   font-size: 55px;
   letter-spacing: 2px;
@@ -71,14 +77,15 @@ nav.navbar .navbar-brand {
   }
 }
 
-article.sign-in.visible span,
-article.why-us.visible span,
-section.what-is-pt-portal span {
+article.sign-in.visible h2,
+article.why-us.visible h2,
+section.what-is-pt-portal h2,
+span.pt-portal-title.visible {
   animation: slideDown 1.8s ease forwards;
 }
 
-article.sign-in span,
-article.why-us span {
+article.sign-in h2,
+article.why-us h2 {
   text-align: center;
   display: block;
   font-size: 125px;
@@ -90,9 +97,10 @@ article.why-us span {
     5px 2px 0px lightgray;
 }
 
-section.what-is-pt-portal span,
-section.pt-portal-platform span,
-article.pt-portal-users span {
+section.what-is-pt-portal h2,
+article.set-availability h2,
+section.pt-portal-platform h2,
+article.pt-portal-users h2 {
   text-align: center;
   display: block;
   font-size: 90px;

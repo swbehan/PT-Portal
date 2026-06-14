@@ -1,7 +1,7 @@
 /* =============================================================================
    WHAT YOU LOVE SECTION
    ============================================================================= */
-article.what-you-love span {
+article.what-you-love h2 {
   display: block;
   text-align: center;
   font-size: 80px;
@@ -122,4 +122,9 @@ article.why-us section div img {
   background-color: black;
   color: white;
   border: 1px solid black;
+}
+
+.sign-in-btn:hover a {
+    color: white;
+    text-decoration: none;
 }
