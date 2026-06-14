@@ -1,6 +1,7 @@
-import { connect } from "./config.js";
+import { connect } from './config.js';
+import mongodb from 'mongodb';
 
-function AppointmentsCollection({ collectionName = "appointments" } = {}) {
+function AppointmentsCollection({ collectionName = 'appointments' } = {}) {
   const me = {};
 
   const appointments = connect(collectionName);
@@ -13,31 +14,46 @@ function AppointmentsCollection({ collectionName = "appointments" } = {}) {
         .limit(pageSize)
         .skip(pageSize * page)
         .toArray();
-      console.log("Fecthed appointments from MongoDB", data);
+      console.log('Fecthed appointments from MongoDB');
       return data;
     } catch (err) {
-      console.error("Error fetching appointments from MongoDB", err);
+      console.error('Error fetching appointments from MongoDB', err);
       throw err;
     }
   };
 
   me.postAppointments = async (appointmentData) => {
     try {
-        const newAppointmentData = {
-            date: appointmentData.date,
-            time: appointmentData.time,
-            location: appointmentData.location,
-            booked: false,
-            patientId: null,
-            createdAt: new Date()
-          };
-        const result = await appointments.insertOne(newAppointmentData);
-        return result;
+      const newAppointmentData = {
+        date: appointmentData.date,
+        time: appointmentData.time,
+        location: appointmentData.location,
+        booked: false,
+        patientId: null,
+        createdAt: new Date(),
+      };
+      const result = await appointments.insertOne(newAppointmentData);
+      console.log('Posted appointment to MongoDB');
+      return result;
     } catch (error) {
-        console.error("Error posting new appointment to MongoDB", error);
-        throw error;
+      console.error('Error posting new appointment to MongoDB', error);
+      throw error;
     }
-  }
+  };
+
+  const { ObjectId } = mongodb;
+
+  me.deleteAppointment = async (id) => {
+    try {
+      const result = await appointments.deleteOne({ _id: new ObjectId(id) });
+      console.log('Deleted appointment from MongoDB');
+      return result;
+    } catch (error) {
+      console.error('Error deleting appointment from MongoDB', error);
+      throw error;
+    }
+  };
+
   return me;
 }
 
