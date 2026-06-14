@@ -1,3 +1,7 @@
+/* =============================================================================
+   GLOBAL STYLES
+   ============================================================================= */
+
 body {
   font-family: 'Barlow Condensed', sans-serif;
   font-weight: 400;
@@ -5,9 +9,13 @@ body {
   overflow-x: hidden;
 }
 
+footer {
+  background-color: black;
+}
+
 /* =============================================================================
      HEADER & NAVBAR
-     ============================================================================= */
+   ============================================================================= */
 
 header.heading {
   position: sticky;
@@ -46,4 +54,52 @@ nav.navbar .navbar-brand {
 #navbarSupportedContent .nav-link:hover {
   text-decoration: underline white 5px;
   text-underline-offset: 10px;
+}
+
+/* =============================================================================
+    SUBTITLES ON PAGES
+   ============================================================================= */
+
+@keyframes slideDown {
+  from {
+    transform: translateY(-50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+article.sign-in.visible span,
+article.why-us.visible span,
+section.what-is-pt-portal span {
+  animation: slideDown 1.8s ease forwards;
+}
+
+article.sign-in span,
+article.why-us span {
+  text-align: center;
+  display: block;
+  font-size: 125px;
+  letter-spacing: 2px;
+  margin-top: 100px;
+  color: black;
+  text-shadow:
+    2px 1px 0px gray,
+    5px 2px 0px lightgray;
+}
+
+section.what-is-pt-portal span,
+section.pt-portal-platform span,
+article.pt-portal-users span {
+  text-align: center;
+  display: block;
+  font-size: 90px;
+  letter-spacing: 2px;
+  margin-top: 100px;
+  color: black;
+  text-shadow:
+    2px 1px 0px gray,
+    5px 2px 0px lightgray;
 }

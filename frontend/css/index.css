@@ -1,3 +1,6 @@
+/* =============================================================================
+   WHAT YOU LOVE SECTION
+   ============================================================================= */
 article.what-you-love span {
   display: block;
   text-align: center;
@@ -33,6 +36,10 @@ article.what-you-love span {
   margin-bottom: 150px;
 }
 
+/* =============================================================================
+   PT PORTAL HIGHLIGHTS SECTION
+   ============================================================================= */
+
 .pt-portal-highlights section div {
   font-size: 60px;
   margin-bottom: 150px;
@@ -47,23 +54,9 @@ article.what-you-love span {
   max-height: 180px;
 }
 
-article.sign-in span,
-article.why-us span {
-  text-align: center;
-  display: block;
-  font-size: 125px;
-  letter-spacing: 2px;
-  margin-top: 100px;
-  color: black;
-  text-shadow:
-    2px 1px 0px gray,
-    5px 2px 0px lightgray;
-}
-
-article.sign-in.visible span,
-article.why-us.visible span {
-  animation: slideDown 1.8s ease forwards;
-}
+/* =============================================================================
+   WHY US SECTION
+   ============================================================================= */
 
 article.why-us section div.why-us-paragraph {
   text-align: center;
@@ -77,6 +70,10 @@ article.why-us section div img {
   object-fit: contain;
   filter: grayscale(100%) brightness(0.6);
 }
+
+/* =============================================================================
+   SIGN IN CARDS SECTION
+   ============================================================================= */
 
 .sign-in-cards .card {
   border: none;
