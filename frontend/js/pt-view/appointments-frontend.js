@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const me = {};
 
     // ----------------------------
-    // ERROR DISPLAY
+    // ERROR RENDERING
     // ----------------------------
     me.showError = ({ msg, res, classOfElement, type = 'danger' } = {}) => {
       const containerErrorWillAppear = document.querySelector(classOfElement);
@@ -19,30 +19,44 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     // ----------------------------
-    // GET REQUESTS
+    // GET REQUEST + CLIENT RENDERING
     // ----------------------------
-    me.getUnbookedAppointments = async () => {
-      const res = await fetch('/api/appointments-not-booked');
+    me.getAppointments = async (booked) => {
+      const res = await fetch(`/api/appointments?booked=${booked}`);
       if (!res.ok) {
         console.error('Failed to fetch listings', res.status, res.statusText);
         me.showError({
-          msg: 'Failed to get unbooked appointments, please try again later',
+          msg: `Failed to get appointments with the filter booked=${booked}, please try again later`,
           res: res,
           classOfElement: '.listed-availability',
         });
         return;
       }
       const data = await res.json();
-      console.log('Fetched unbooked appointment');
+      console.log(`Fetched appointments with booked=${booked}`);
 
-      const appointmentSection = document.querySelector('.listed-availability');
-      appointmentSection.innerHTML = '';
+      if (booked) {
+        const appointmentSection = document.querySelector('.booked-schedule');
+        appointmentSection.innerHTML = '';
 
-      renderAppointments(data.appointmentsUnbooked);
+        renderBookedAppointments(data.appointments);
+      } else {
+        const appointmentSection = document.querySelector(
+          '.listed-availability',
+        );
+        appointmentSection.innerHTML = '';
+
+        renderUnbookedAppointments(data.appointments);
+      }
     };
 
-    const renderAppointments = (appointmentsUnbooked) => {
+    const renderUnbookedAppointments = (appointmentsUnbooked) => {
       const appointmentSection = document.querySelector('.listed-availability');
+      if (appointmentsUnbooked.length === 0) {
+        appointmentSection.innerHTML =
+          '<p class="no-upcoming-availability">No upcoming availability listed. Update your availability above.</p>';
+        return;
+      }
       for (const { date, time, location, _id } of appointmentsUnbooked) {
         const row = document.createElement('div');
         row.className = 'row align-items-center mb-3';
@@ -52,7 +66,7 @@ document.addEventListener('DOMContentLoaded', () => {
         appointmentColumn.innerHTML = `<div>${formatAppointment(date, time)} -- (${location})</div>`;
 
         const cancelColumn = document.createElement('div');
-        cancelColumn.className = 'col-1';
+        cancelColumn.className = 'col-2';
 
         const cancelButton = document.createElement('button');
         cancelButton.className = 'cancel-btn';
@@ -68,6 +82,26 @@ document.addEventListener('DOMContentLoaded', () => {
           await me.deleteAppointment(cancelButton.dataset.id);
         });
       }
+    };
+
+    const renderBookedAppointments = (appointmentsBooked) => {
+      const appointmentSection = document.querySelector('.booked-schedule');
+      if (appointmentsBooked.length === 0) {
+        appointmentSection.innerHTML =
+          '<p class="no-upcoming-availability">No patients have booked with your availability yet</p>';
+        return;
+      }
+      const row = document.createElement('div');
+      row.className = 'row g-3';
+
+      for (const { date, time, location, patientName } of appointmentsBooked) {
+        const appointmentColumn = document.createElement('div');
+        appointmentColumn.className = 'col-4 col-4 px-2';
+        appointmentColumn.innerHTML = `<div class="single-booked-appointment"><h4 class="booked-title">${patientName}</h4><div>${formatAppointment(date, time)} -- (${location})</div></div>`;
+        row.appendChild(appointmentColumn);
+      }
+
+      appointmentSection.appendChild(row);
     };
 
     const formatAppointment = (date, time) => {
@@ -90,7 +124,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // POST REQUEST
     // ----------------------------
     me.postAppointment = async (appointmentData) => {
-      const req = await fetch('/api/add-appointment-availability', {
+      const req = await fetch('/api/appointments', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -111,7 +145,7 @@ document.addEventListener('DOMContentLoaded', () => {
           document.getElementById('successToast'),
         );
         toast.show();
-        me.getUnbookedAppointments();
+        me.getAppointments(false);
       }
     };
 
@@ -137,6 +171,9 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
       }
 
+      document.getElementById('date').value = '';
+      document.getElementById('time').value = '';
+      document.getElementById('location').value = '';
       await me.postAppointment(newAppointment);
     });
 
@@ -145,7 +182,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // ----------------------------
 
     me.deleteAppointment = async (appointmentId) => {
-      const req = await fetch(`/api/delete-appointment/${appointmentId}`, {
+      const req = await fetch(`/api/appointment/${appointmentId}`, {
         method: 'DELETE',
       });
       if (!req.ok) {
@@ -162,16 +199,13 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
       } else {
         console.log('Deleted unbooked appointment');
-        me.getUnbookedAppointments();
+        me.getAppointments(false);
       }
     };
-    // ----------------------------
-    // UPDATE REQUEST
-    // ----------------------------
-
     return me;
   }
 
   const appointmentFrontEnd = Appointments();
-  appointmentFrontEnd.getUnbookedAppointments();
+  appointmentFrontEnd.getAppointments(false);
+  appointmentFrontEnd.getAppointments(true);
 });

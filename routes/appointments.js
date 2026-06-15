@@ -3,14 +3,15 @@ import appointmentsCollection from '../db/appointment-db.js';
 
 const appointmentsRouter = express.Router();
 
-// THIS IS A DATA ENDPOINT that the route will send information back to the client side
-appointmentsRouter.get('/appointments-not-booked', async (req, res) => {
+appointmentsRouter.get('/appointments', async (req, res) => {
   try {
-    const appointmentsUnbooked = await appointmentsCollection.getAppointments({
-      query: { booked: false },
+    const booked = req.query.booked === 'true';
+    const appointments = await appointmentsCollection.getAppointments({
+      query: { booked: booked },
     });
+    console.log(appointments);
     res.json({
-      appointmentsUnbooked,
+        appointments,
     });
   } catch (error) {
     console.error('Error fetching appointments that are not booked', error);
@@ -18,21 +19,7 @@ appointmentsRouter.get('/appointments-not-booked', async (req, res) => {
   }
 });
 
-appointmentsRouter.get('/appointments-booked', async (req, res) => {
-  try {
-    const appointments = await appointmentsCollection.getAppointments({
-      query: { booked: true },
-    });
-    res.json({
-      appointments,
-    });
-  } catch (error) {
-    console.error('Error fetching booked appointments', error);
-    res.status(500).json({ error: 'Internal Server Error', appointments: [] });
-  }
-});
-
-appointmentsRouter.post('/add-appointment-availability', async (req, res) => {
+appointmentsRouter.post('/appointments', async (req, res) => {
   try {
     console.log(req.body);
     const result = await appointmentsCollection.postAppointments(req.body);
@@ -43,7 +30,7 @@ appointmentsRouter.post('/add-appointment-availability', async (req, res) => {
   }
 });
 
-appointmentsRouter.delete('/delete-appointment/:id', async (req, res) => {
+appointmentsRouter.delete('/appointment/:id', async (req, res) => {
   try {
     const { id } = req.params;
     const result = await appointmentsCollection.deleteAppointment(id);

@@ -1,3 +1,7 @@
+/* =============================================================================
+   SET AVAILABILITY
+   ============================================================================= */
+
 article.set-availability {
   margin-bottom: 160px;
 }
@@ -41,6 +45,10 @@ div label + input + span {
   font-size: 20px;
 }
 
+/* =============================================================================
+   LISTED AVAILABILITY(UNBOOKED)
+   ============================================================================= */
+
 section.listed-availability {
   margin-top: 60px;
 }
@@ -68,3 +76,41 @@ section.listed-availability div.single-unbooked-appointment {
   color: black;
   border: 1px solid black;
 }
+
+article.current-availability-not-booked {
+  margin-bottom: 200px;
+}
+
+.no-upcoming-availability {
+    text-align: center;
+    font-size: 40px;
+}
+
+/* =============================================================================
+   BOOKED SCHEDULE
+   ============================================================================= */
+
+section.booked-schedule {
+    margin-top: 80px;
+    margin-bottom: 120px;
+}
+
+section.booked-schedule div.single-booked-appointment {
+  background-color: gray;
+  color: white;
+  border-radius: 20px;
+  padding: 8px 30px;
+  text-align: center;
+  font-size: 20px;
+  border: 2px solid black;
+}
+
+.booked-title {
+  text-align: center;
+  font-size: 25px;
+  letter-spacing: 2px;
+  color: black;
+  text-shadow:
+    5px 2px 0px lightgray;
+}
+

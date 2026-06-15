@@ -8,13 +8,15 @@ function AppointmentsCollection({ collectionName = 'appointments' } = {}) {
 
   me.getAppointments = async ({ query = {}, pageSize = 10, page = 0 } = {}) => {
     try {
-      // Will return a cursor that needs to be shifted into an Array
+      const today = new Date().toISOString().split('T')[0];
+      const filteredQuery = { ...query, date: { $gte: today } };
+
       const data = await appointments
-        .find(query)
+        .find(filteredQuery)
         .limit(pageSize)
         .skip(pageSize * page)
         .toArray();
-      console.log('Fecthed appointments from MongoDB');
+      console.log(`Fetched booked=${query.booked} appointments from MongoDB ⭐`);
       return data;
     } catch (err) {
       console.error('Error fetching appointments from MongoDB', err);
@@ -30,10 +32,11 @@ function AppointmentsCollection({ collectionName = 'appointments' } = {}) {
         location: appointmentData.location,
         booked: false,
         patientId: null,
+        patientName: '',
         createdAt: new Date(),
       };
       const result = await appointments.insertOne(newAppointmentData);
-      console.log('Posted appointment to MongoDB');
+      console.log('Posted appointment to MongoDB 📝');
       return result;
     } catch (error) {
       console.error('Error posting new appointment to MongoDB', error);
@@ -46,7 +49,7 @@ function AppointmentsCollection({ collectionName = 'appointments' } = {}) {
   me.deleteAppointment = async (id) => {
     try {
       const result = await appointments.deleteOne({ _id: new ObjectId(id) });
-      console.log('Deleted appointment from MongoDB');
+      console.log('Deleted appointment from MongoDB ❌');
       return result;
     } catch (error) {
       console.error('Error deleting appointment from MongoDB', error);
