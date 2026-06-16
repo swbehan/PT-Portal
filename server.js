@@ -12,9 +12,7 @@ app.use(express.json());
 app.use("/api", appointmentsRouter);
 app.use("/api", usersRouter);
 
-// second parameter is the function callback when the server is ready and running. 
-// The callback function you give will ONLY be called directly by express.
-// Since we are giving a callback function, we are not calling it anywere, Express will us that callback function when the server is ready and connected to the port
+
 app.listen(PORT, () => {
   console.log(`Created a server listening on port ${PORT}`);
 });

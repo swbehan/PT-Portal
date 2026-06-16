@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     // ----------------------------
-    // GET REQUEST + CLIENT RENDERING
+    // GET REQUEST
     // ----------------------------
     me.getAppointments = async (booked) => {
       const res = await fetch(
@@ -50,6 +50,64 @@ document.addEventListener('DOMContentLoaded', () => {
         renderUnbookedAppointments(data.appointments);
       }
     };
+
+    // ----------------------------
+    // POST REQUEST
+    // ----------------------------
+    me.postAppointment = async (appointmentData) => {
+      const req = await fetch('/api/appointments', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ ...appointmentData }),
+      });
+      if (!req.ok) {
+        console.error('Failed to post appointment', req.status, req.statusText);
+        me.showError({
+          msg: 'Failed to post appointment, please try again later',
+          res: req,
+          classOfElement: '.set-availability',
+        });
+        return;
+      } else {
+        console.log('Posted new unbooked listings');
+        const toast = new bootstrap.Toast(
+          document.getElementById('successToast'),
+        );
+        toast.show();
+        me.getAppointments(false);
+      }
+    };
+
+    // ----------------------------
+    // DELETE REQUEST
+    // ----------------------------
+    me.deleteAppointment = async (appointmentId) => {
+      const req = await fetch(`/api/appointments/${appointmentId}`, {
+        method: 'DELETE',
+      });
+      if (!req.ok) {
+        console.error(
+          'Failed to delete unbooked appointment',
+          req.status,
+          req.statusText,
+        );
+        me.showError({
+          msg: 'Failed to delete appointment, please try again later',
+          res: req,
+          classOfElement: '.current-availability-not-booked',
+        });
+        return;
+      } else {
+        console.log('Deleted unbooked appointment');
+        me.getAppointments(false);
+      }
+    };
+
+    // ----------------------------
+    // CLIENT SIDE HTML RENDERING
+    // ----------------------------
 
     const renderUnbookedAppointments = (appointmentsUnbooked) => {
       const appointmentSection = document.querySelector('.listed-availability');
@@ -98,14 +156,14 @@ document.addEventListener('DOMContentLoaded', () => {
       for (const { date, time, location, patientName } of appointmentsBooked) {
         const appointmentColumn = document.createElement('div');
         appointmentColumn.className = 'col-4 px-2';
-        appointmentColumn.innerHTML = `<div class="single-booked-appointment"><h4 class="booked-title">${patientName}</h4><div>${formatAppointment(date, time)} -- (${location})</div></div>`;
+        appointmentColumn.innerHTML = `<div class="single-booked-appointment"><h4 class="booked-title">${patientName}</h4>${formatAppointment(date, time, location)}</div>`;
         row.appendChild(appointmentColumn);
       }
 
       appointmentSection.appendChild(row);
     };
 
-    const formatAppointment = (date, time) => {
+    const formatAppointment = (date, time, location = '') => {
       const dateObj = new Date(`${date}T${time}`);
       const formattedDate = dateObj.toLocaleDateString('en-US', {
         weekday: 'long',
@@ -118,88 +176,10 @@ document.addEventListener('DOMContentLoaded', () => {
         minute: '2-digit',
         hour12: true,
       });
-      return `${formattedDate} at ${formattedTime}`;
-    };
-
-    // ----------------------------
-    // POST REQUEST
-    // ----------------------------
-    me.postAppointment = async (appointmentData) => {
-      const req = await fetch('/api/appointments', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ ...appointmentData, ptName: currentPT.name }),
-      });
-      if (!req.ok) {
-        console.error('Failed to post appointment', req.status, req.statusText);
-        me.showError({
-          msg: 'Failed to post appointment, please try again later',
-          res: req,
-          classOfElement: '.set-availability',
-        });
-        return;
+      if (location === '') {
+        return `${formattedDate} at ${formattedTime}`;
       } else {
-        console.log('Posted new unbooked listings');
-        const toast = new bootstrap.Toast(
-          document.getElementById('successToast'),
-        );
-        toast.show();
-        me.getAppointments(false);
-      }
-    };
-
-    document.querySelector('form').addEventListener('submit', async (e) => {
-      e.preventDefault();
-
-      const newAppointment = {
-        date: document.getElementById('date').value,
-        time: document.getElementById('time').value,
-        location: document.getElementById('location').value,
-      };
-
-      if (
-        !newAppointment.date ||
-        !newAppointment.time ||
-        !newAppointment.location
-      ) {
-        me.showError({
-          msg: 'Please fill out all fields',
-          res: { status: 400, statusText: 'Bad Request' },
-          classOfElement: '.set-availability',
-        });
-        return;
-      }
-
-      document.getElementById('date').value = '';
-      document.getElementById('time').value = '';
-      document.getElementById('location').value = '';
-      await me.postAppointment(newAppointment);
-    });
-
-    // ----------------------------
-    // DELETE REQUEST
-    // ----------------------------
-    me.deleteAppointment = async (appointmentId) => {
-      const req = await fetch(`/api/appointment/${appointmentId}`, {
-        method: 'DELETE',
-      });
-      if (!req.ok) {
-        console.error(
-          'Failed to delete unbooked appointment',
-          req.status,
-          req.statusText,
-        );
-        me.showError({
-          msg: 'Failed to delete appointment, please try again later',
-          res: req,
-          classOfElement: '.current-availability-not-booked',
-        });
-        return;
-      } else {
-        console.log('Deleted unbooked appointment');
-        me.getAppointments(false);
+        return `<div>Date:<ul><li>${formattedDate}</li></ul>  Time:<ul><li>${formattedTime}</li></ul>  Location:<ul><li>${location}</li></ul><span>Appointment length is 45 minutes</span></div>`;
       }
     };
 
@@ -213,6 +193,34 @@ document.addEventListener('DOMContentLoaded', () => {
 
       await me.getAppointments(false);
       await me.getAppointments(true);
+
+      document.querySelector('form').addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const newAppointment = {
+          date: document.getElementById('date').value,
+          time: document.getElementById('time').value,
+          location: document.getElementById('location').value,
+        };
+
+        if (
+          !newAppointment.date ||
+          !newAppointment.time ||
+          !newAppointment.location
+        ) {
+          me.showError({
+            msg: 'Please fill out all fields',
+            res: { status: 400, statusText: 'Bad Request' },
+            classOfElement: '.set-availability',
+          });
+          return;
+        }
+
+        document.getElementById('date').value = '';
+        document.getElementById('time').value = '';
+        document.getElementById('location').value = '';
+        await me.postAppointment(newAppointment);
+      });
     };
 
     return me;

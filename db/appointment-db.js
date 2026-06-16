@@ -37,7 +37,7 @@ function AppointmentsCollection({ collectionName = 'appointments' } = {}) {
     }
   };
 
-  //only used by pt
+  //only used by pt which has one user persona, so hardcoding Pt into post route
   me.postAppointments = async (appointmentData) => {
     try {
       const ptPersona = await usersCollection.getUser({
@@ -66,7 +66,7 @@ function AppointmentsCollection({ collectionName = 'appointments' } = {}) {
 
   const { ObjectId } = mongodb;
 
-  //only used by pt
+  //only used by pt, can only delete appointments before they are booked by a patient
   me.deleteAppointment = async (id) => {
     try {
       const result = await appointments.deleteOne({ _id: new ObjectId(id) });
@@ -78,7 +78,7 @@ function AppointmentsCollection({ collectionName = 'appointments' } = {}) {
     }
   };
 
-  //only used by patient
+  //only used by patient to book appointments that are available from PT's
   me.bookAppointment = async (id) => {
     try {
       const patientUser = await usersCollection.getUser({

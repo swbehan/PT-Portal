@@ -9,9 +9,11 @@ appointmentsRouter.get('/appointments', async (req, res) => {
   try {
     const booked = req.query.booked === 'true';
     const ptId = req.query.ptId || null;
+    const patientId = req.query.patientId || null;
 
     const query = { booked };
     if (ptId) query.ptId = new ObjectId(ptId);
+    if (patientId) query.patientId = new ObjectId(patientId);
 
     const appointments = await appointmentsCollection.getAppointments({
       query,
@@ -39,7 +41,7 @@ appointmentsRouter.post('/appointments', async (req, res) => {
   }
 });
 
-appointmentsRouter.delete('/appointment/:id', async (req, res) => {
+appointmentsRouter.delete('/appointments/:id', async (req, res) => {
   try {
     const { id } = req.params;
     const result = await appointmentsCollection.deleteAppointment(id);
