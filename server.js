@@ -1,5 +1,6 @@
 import express from "express";
 import appointmentsRouter from "./routes/appointments.js";
+import usersRouter from "./routes/users.js";
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -8,7 +9,8 @@ const PORT = process.env.PORT || 3000;
 app.use(express.static("frontend"));
 
 app.use(express.json());
-app.use("/api", appointmentsRouter)
+app.use("/api", appointmentsRouter);
+app.use("/api", usersRouter);
 
 // second parameter is the function callback when the server is ready and running. 
 // The callback function you give will ONLY be called directly by express.

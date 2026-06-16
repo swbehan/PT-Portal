@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
   function Appointments() {
     const me = {};
+    let currentPT = null;
 
     // ----------------------------
     // ERROR RENDERING
@@ -22,7 +23,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // GET REQUEST + CLIENT RENDERING
     // ----------------------------
     me.getAppointments = async (booked) => {
-      const res = await fetch(`/api/appointments?booked=${booked}`);
+      const res = await fetch(
+        `/api/appointments?booked=${booked}&ptId=${currentPT._id}`,
+      );
       if (!res.ok) {
         console.error('Failed to fetch listings', res.status, res.statusText);
         me.showError({
@@ -38,14 +41,12 @@ document.addEventListener('DOMContentLoaded', () => {
       if (booked) {
         const appointmentSection = document.querySelector('.booked-schedule');
         appointmentSection.innerHTML = '';
-
         renderBookedAppointments(data.appointments);
       } else {
         const appointmentSection = document.querySelector(
           '.listed-availability',
         );
         appointmentSection.innerHTML = '';
-
         renderUnbookedAppointments(data.appointments);
       }
     };
@@ -96,7 +97,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       for (const { date, time, location, patientName } of appointmentsBooked) {
         const appointmentColumn = document.createElement('div');
-        appointmentColumn.className = 'col-4 col-4 px-2';
+        appointmentColumn.className = 'col-4 px-2';
         appointmentColumn.innerHTML = `<div class="single-booked-appointment"><h4 class="booked-title">${patientName}</h4><div>${formatAppointment(date, time)} -- (${location})</div></div>`;
         row.appendChild(appointmentColumn);
       }
@@ -129,14 +130,14 @@ document.addEventListener('DOMContentLoaded', () => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(appointmentData),
+        body: JSON.stringify({ ...appointmentData, ptName: currentPT.name }),
       });
       if (!req.ok) {
         console.error('Failed to post appointment', req.status, req.statusText);
         me.showError({
           msg: 'Failed to post appointment, please try again later',
           res: req,
-          classOfElement: `.set-availability`,
+          classOfElement: '.set-availability',
         });
         return;
       } else {
@@ -180,7 +181,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // ----------------------------
     // DELETE REQUEST
     // ----------------------------
-
     me.deleteAppointment = async (appointmentId) => {
       const req = await fetch(`/api/appointment/${appointmentId}`, {
         method: 'DELETE',
@@ -194,7 +194,7 @@ document.addEventListener('DOMContentLoaded', () => {
         me.showError({
           msg: 'Failed to delete appointment, please try again later',
           res: req,
-          classOfElement: `.current-availability-not-booked`,
+          classOfElement: '.current-availability-not-booked',
         });
         return;
       } else {
@@ -202,10 +202,22 @@ document.addEventListener('DOMContentLoaded', () => {
         me.getAppointments(false);
       }
     };
+
+    // ----------------------------
+    // INIT
+    // ----------------------------
+    me.init = async () => {
+      const res = await fetch('/api/users?role=pt&name=Dr.+Sarah+Nikki');
+      const data = await res.json();
+      currentPT = data.users[0];
+
+      await me.getAppointments(false);
+      await me.getAppointments(true);
+    };
+
     return me;
   }
 
   const appointmentFrontEnd = Appointments();
-  appointmentFrontEnd.getAppointments(false);
-  appointmentFrontEnd.getAppointments(true);
+  appointmentFrontEnd.init();
 });

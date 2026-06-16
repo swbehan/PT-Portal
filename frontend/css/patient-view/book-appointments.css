@@ -1,0 +1,25 @@
+article.book-appointment h2 {
+    margin-bottom: 80px;
+}
+
+article.book-appointment section div label {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.submit-btn {
+    background-color: gray;
+    color: black;
+    border-radius: 20px;
+    padding: 8px 30px;
+    width: 50%;
+    margin: 20px auto 0;
+    margin-top: 50px;
+    display: block;
+    box-shadow: 15px -15px 0px lightgray;
+  }
+  
+  .submit-btn:hover {
+    background-color: black;
+    color: white;
+  }
