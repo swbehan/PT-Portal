@@ -5,8 +5,9 @@ const usersRouter = Router();
 
 usersRouter.get('/users', async (req, res) => {
   try {
-    const { role } = req.query;
-    const users = await usersCollection.getUser({ role });
+    const role = req.query.role || null;
+    const name = req.query.name || null;
+    const users = await usersCollection.getUser({ name, role });
     res.status(200).json({ users });
   } catch (error) {
     console.error('Error fetching users', error);

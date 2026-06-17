@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Cabin:ital,wght@0,400..700;1,400..700&family=Diplomata&family=Lexend+Deca:wght@100..900&family=Oswald:wght@200..700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+      crossorigin="anonymous"
+    />
+    <link href="../css/global.css" rel="stylesheet" />
+    <link href="../css/pt-view/patient-review.css" rel="stylesheet" />
+    <meta
+      name="description"
+      content="patient review page for a PT who is trying to view the feedback from a patient of an exercise and is also trying to log milestones for a doctor to view."
+    />
+    <meta name="author" content="Sean Behan, Julian Leonhardt" />
+    <title>Patient Review</title>
+  </head>
+  <body>
+    <header class="heading">
+      <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+          <a class="navbar-brand">PT Portal</a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link" href="availability.html">Availability</a>
+              </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link active"
+                  aria-current="page"
+                  href="patient-review.html"
+                  >Patient Reviews</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="">Plans</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link sign-out" href="/index.html">Sign Out</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <main>
+      <article class="patients-display px-5">
+        <h2>Patients</h2>
+        <section class="row gx-5 justify-content-end">
+        <div class="col-6">
+          <input
+            type="search"
+            class="form-control form-control-lg"
+            placeholder="Search by patient name..."
+            id="search-input"
+          />
+         </div> 
+        </section>
+        <section class="row gx-5 align-items-center patient-listings">
+        </section>
+      </article>
+    </main>
+  </body>
+</html>

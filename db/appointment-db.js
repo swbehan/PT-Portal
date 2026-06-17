@@ -8,19 +8,26 @@ function AppointmentsCollection({ collectionName = 'appointments' } = {}) {
   const appointments = connect(collectionName);
 
   // Only fetches appointments that have not already passed
-  me.getAppointments = async ({ query = {}, pageSize = 10, page = 0 } = {}) => {
+  me.getAppointments = async ({
+    query = {},
+    pageSize = 10,
+    page = 0,
+    filteredByDate = true,
+  } = {}) => {
     try {
       const now = new Date();
-      const today = now.toISOString().split('T')[0];
-      const currentTime = now.toTimeString().split(' ')[0].slice(0, 5);
+      const today = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`;
+      const currentTime = now.toTimeString().slice(0, 5);
 
-      const filteredQuery = {
-        ...query,
-        $or: [
-          { date: { $gt: today } },
-          { date: today, time: { $gte: currentTime } },
-        ],
-      };
+      const filteredQuery = filteredByDate
+        ? {
+            ...query,
+            $or: [
+              { date: { $gt: today } },
+              { date: today, time: { $gte: currentTime } },
+            ],
+          }
+        : { ...query };
 
       const data = await appointments
         .find(filteredQuery)

@@ -160,7 +160,7 @@ document.addEventListener('DOMContentLoaded', () => {
     me.init = async () => {
       const res = await fetch('/api/users?role=patient&name=Sofia+Terry');
       const data = await res.json();
-      currentPatient = data.users[0];
+      currentPatient = data.users;
       await me.getAppointments();
       await me.populatePTDropdown();
 

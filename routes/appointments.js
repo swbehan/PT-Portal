@@ -10,6 +10,7 @@ appointmentsRouter.get('/appointments', async (req, res) => {
     const booked = req.query.booked === 'true';
     const ptId = req.query.ptId || null;
     const patientId = req.query.patientId || null;
+    const filteredByDate = req.query.filteredByDate !== 'false'
 
     const query = { booked };
     if (ptId) query.ptId = new ObjectId(ptId);
@@ -17,6 +18,7 @@ appointmentsRouter.get('/appointments', async (req, res) => {
 
     const appointments = await appointmentsCollection.getAppointments({
       query,
+      filteredByDate,
     });
     console.log(appointments);
     res.json({
