@@ -12,28 +12,24 @@ document.addEventListener('DOMContentLoaded', () => {
       setTimeout(() => alert.remove(), 3000);
     };
 
-    //DEMO STAND IN: This is to represent the auth
+    // ----------------------------
+    // GET REQUEST
+    // ----------------------------
+
+    // Mocked auth: resolve the signed-in patient persona, then load only their plans.
     me.loadMyPlans = async () => {
-      const allRes = await fetch('/api/workouts');
-      if (!allRes.ok) {
+      const userRes = await fetch('/api/current-user?role=patient');
+      if (!userRes.ok) {
         me.showError({
-          msg: 'Failed to load plans',
-          res: allRes,
+          msg: 'Failed to load your profile',
+          res: userRes,
           classOfElement: '.my-plans',
         });
         return;
       }
-      const all = await allRes.json();
-      if (all.workouts.length === 0) {
-        renderPlans([], 'Patient');
-        return;
-      }
+      const { user } = await userRes.json();
 
-      //Pretend sign-in for patient
-      const demoPatientId = all.workouts[0].patientId;
-      const demoPatientName = all.workouts[0].patientName;
-
-      const myRes = await fetch(`/api/workouts?patientId=${demoPatientId}`);
+      const myRes = await fetch(`/api/workouts?patientId=${user._id}`);
       if (!myRes.ok) {
         me.showError({
           msg: 'Failed to load your plans',
@@ -43,8 +39,12 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
       }
       const mine = await myRes.json();
-      renderPlans(mine.workouts, demoPatientName);
+      renderPlans(mine.workouts, user.name);
     };
+
+    // ----------------------------
+    // CLIENT SIDE HTML RENDERING
+    // ----------------------------
 
     const renderPlans = (plans, patientName) => {
       document.querySelector('.welcome-heading').textContent =
@@ -77,6 +77,9 @@ document.addEventListener('DOMContentLoaded', () => {
     return me;
   }
 
+  // ----------------------------
+  // INIT
+  // ----------------------------
   const patientPlans = PatientPlans();
   patientPlans.loadMyPlans();
 });

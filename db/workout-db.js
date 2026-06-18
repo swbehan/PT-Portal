@@ -7,6 +7,7 @@ function WorkoutsCollection({ collectionName = 'workouts' } = {}) {
   const me = {};
   const workouts = connect(collectionName);
 
+  // used by PT to view/edit/delete existing plans already posted and Patient to view plans assigned to them
   me.getWorkouts = async ({ query = {}, pageSize = 50, page = 0 } = {}) => {
     try {
       const data = await workouts
@@ -21,6 +22,7 @@ function WorkoutsCollection({ collectionName = 'workouts' } = {}) {
     }
   };
 
+  // Only used by PT to post workouts for patients
   me.postWorkouts = async (workoutData) => {
     try {
       const newWorkout = {
@@ -43,6 +45,7 @@ function WorkoutsCollection({ collectionName = 'workouts' } = {}) {
     }
   };
 
+  // Only used by PT to update an already posted workout plan for a patient
   me.updateWorkout = async (id, workoutData) => {
     try {
       const updateFields = {
@@ -65,6 +68,7 @@ function WorkoutsCollection({ collectionName = 'workouts' } = {}) {
     }
   };
 
+  // Only used by the PT to delete an existing plan already posted
   me.deleteExercise = async (workoutId, exerciseId) => {
     try {
       const result = await workouts.updateOne(

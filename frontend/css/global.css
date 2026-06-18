@@ -13,6 +13,11 @@ footer {
   background-color: black;
 }
 
+footer span {
+  text-align: center;
+  display: block;
+}
+
 a {
   color: black;
   text-decoration: none;
@@ -66,8 +71,7 @@ footer span {
   padding: 8px 30px;
   font-size: 35px;
   color: red;
-  text-shadow:
-    2px 1px 0px lightgray,
+  text-shadow: 2px 1px 0px lightgray;
 }
 
 /* =============================================================================
@@ -85,6 +89,8 @@ footer span {
   }
 }
 
+article.my-plans h2,
+article.build-plan h2,
 article.patients-display h2,
 article.book-appointment h2,
 article.sign-in.visible h2,
@@ -107,6 +113,8 @@ article.why-us h2 {
     5px 2px 0px lightgray;
 }
 
+article.my-plans h2,
+article.build-plan h2,
 article.patients-display h2,
 article.book-appointment h2,
 article.availability-booked h2,

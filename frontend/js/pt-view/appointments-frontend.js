@@ -48,7 +48,11 @@ document.addEventListener('DOMContentLoaded', () => {
         );
         appointmentSection.innerHTML = '';
         renderUnbookedAppointments(data.appointments);
-        console.log('unbooked count:', data.appointments.length, data.appointments);
+        console.log(
+          'unbooked count:',
+          data.appointments.length,
+          data.appointments,
+        );
       }
     };
 
@@ -188,9 +192,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // INIT
     // ----------------------------
     me.init = async () => {
-      const res = await fetch('/api/users?role=pt&name=Dr.+Sarah+Nikki');
+      const res = await fetch('/api/current-user?role=pt');
       const data = await res.json();
-      currentPT = data.users;
+      currentPT = data.user;
 
       await me.getAppointments(false);
       await me.getAppointments(true);
