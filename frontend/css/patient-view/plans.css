@@ -1,0 +1,43 @@
+/* MY PLANS (PATIENT VIEW) */
+
+article.my-plans {
+  margin-bottom: 200px;
+}
+
+article.my-plans h2 {
+  margin-bottom: 60px;
+}
+
+section.assigned-plans {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.plan-card {
+  background-color: gray;
+  color: white;
+  border-radius: 20px;
+  padding: 20px 30px;
+  margin-bottom: 30px;
+}
+
+.plan-card h3 {
+  font-size: 40px;
+  letter-spacing: 2px;
+}
+
+.exercise-item {
+  border-top: 1px solid white;
+  padding: 14px 0;
+  font-size: 22px;
+}
+
+.exercise-item a {
+  color: white;
+  text-decoration: underline;
+}
+
+.no-plans {
+  text-align: center;
+  font-size: 40px;
+}

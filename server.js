@@ -1,17 +1,18 @@
-import express from "express";
-import appointmentsRouter from "./routes/appointments.js";
-import usersRouter from "./routes/users.js";
+import express from 'express';
+import appointmentsRouter from './routes/appointments.js';
+import workoutRouter from './routes/workouts.js';
+import usersRouter from './routes/users.js';
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
 // in express the way we serve static files is with the express app.use(express.static("folder-name"))
-app.use(express.static("frontend"));
+app.use(express.static('frontend'));
 
 app.use(express.json());
-app.use("/api", appointmentsRouter);
-app.use("/api", usersRouter);
-
+app.use('/api', appointmentsRouter);
+app.use('/api', workoutRouter);
+app.use('/api', usersRouter);
 
 app.listen(PORT, () => {
   console.log(`Created a server listening on port ${PORT}`);

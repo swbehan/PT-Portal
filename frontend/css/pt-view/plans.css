@@ -1,0 +1,91 @@
+/* BUILD PLAN */
+
+article.build-plan {
+  margin-bottom: 160px;
+}
+
+article.build-plan h2 {
+  margin-bottom: 80px;
+}
+
+#plan-form {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.exercise-row {
+  background-color: #f3f3f3;
+  border-radius: 20px;
+  padding: 20px;
+  margin-bottom: 15px;
+}
+
+.add-exercise-btn,
+.submit-btn {
+  background-color: gray;
+  color: black;
+  border-radius: 20px;
+  padding: 8px 30px;
+  margin-top: 20px;
+  box-shadow: 15px -15px 0px lightgray;
+}
+
+.add-exercise-btn:hover,
+.submit-btn:hover {
+  background-color: black;
+  color: white;
+}
+
+.remove-exercise-btn {
+  background-color: black;
+  color: white;
+  border-radius: 20px;
+  padding: 4px 16px;
+  border: 1px solid black;
+}
+
+/* EXISTING PLANS */
+
+article.existing-plans {
+  margin-bottom: 200px;
+}
+
+.plan-card {
+  background-color: gray;
+  color: white;
+  border-radius: 20px;
+  padding: 20px 30px;
+  margin-bottom: 20px;
+}
+
+.plan-card h4 {
+  font-size: 35px;
+  letter-spacing: 2px;
+}
+
+.edit-plan-btn {
+  background-color: black;
+  color: white;
+  border-radius: 20px;
+  padding: 4px 24px;
+  border: 1px solid white;
+  margin-bottom: 10px;
+}
+
+.edit-plan-btn:hover {
+  background-color: white;
+  color: black;
+}
+
+.exercise-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid white;
+  padding: 10px 0;
+}
+
+.no-plans {
+  text-align: center;
+  font-size: 40px;
+}
