@@ -47,10 +47,7 @@ function AppointmentsCollection({ collectionName = 'appointments' } = {}) {
   //only used by pt which has one user persona, so hardcoding Pt into post route
   me.postAppointments = async (appointmentData) => {
     try {
-      const ptPersona = await usersCollection.getUser({
-        name: 'Dr. Sarah Nikki',
-        role: 'pt',
-      });
+      const ptPersona = await usersCollection.getCurrentUser('pt');
       const newAppointmentData = {
         date: appointmentData.date,
         time: appointmentData.time,
@@ -88,10 +85,7 @@ function AppointmentsCollection({ collectionName = 'appointments' } = {}) {
   //only used by patient to book appointments that are available from PT's
   me.bookAppointment = async (id) => {
     try {
-      const patientUser = await usersCollection.getUser({
-        name: 'Sofia Terry',
-        role: 'patient',
-      });
+      const patientUser = await usersCollection.getCurrentUser('patient');
 
       const result = await appointments.updateOne(
         { _id: new ObjectId(id) },

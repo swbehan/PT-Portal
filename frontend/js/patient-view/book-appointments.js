@@ -158,9 +158,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // INIT
     // ----------------------------
     me.init = async () => {
-      const res = await fetch('/api/users?role=patient&name=Sofia+Terry');
+      const res = await fetch('/api/current-user?role=patient');
       const data = await res.json();
-      currentPatient = data.users;
+      currentPatient = data.user;
       await me.getAppointments();
       await me.populatePTDropdown();
 

@@ -16,13 +16,13 @@
       crossorigin="anonymous"
     />
     <link href="../css/global.css" rel="stylesheet" />
-    <link href="../css/pt-view/patient-review.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../css/patient-view/plans.css" />
     <meta
       name="description"
-      content="patient review page for a PT who is trying to view the feedback from a patient of an exercise and is also trying to log milestones for a doctor to view."
+      content="Patient view of assigned workout plans with exercises and video guidance"
     />
     <meta name="author" content="Sean Behan, Julian Leonhardt" />
-    <title>Patient Review</title>
+    <title>My Workout Plan</title>
   </head>
   <body>
     <header class="heading">
@@ -43,18 +43,14 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
               <li class="nav-item">
-                <a class="nav-link" href="availability.html">Availability</a>
-              </li>
-              <li class="nav-item">
-                <a
-                  class="nav-link active"
-                  aria-current="page"
-                  href="patient-review.html"
-                  >Patient Reviews</a
+                <a class="nav-link" href="book-appointment.html"
+                  >Appointments</a
                 >
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="plans.html">Plans</a>
+                <a class="nav-link active" aria-current="page" href="plans.html"
+                  >My Plan</a
+                >
               </li>
               <li class="nav-item">
                 <a class="nav-link sign-out" href="/index.html">Sign Out</a>
@@ -65,21 +61,15 @@
       </nav>
     </header>
     <main>
-      <article class="patients-display px-5">
-        <h2>Patients</h2>
-        <section class="row gx-5 justify-content-end">
-        <div class="col-6">
-          <input
-            type="search"
-            class="form-control form-control-lg"
-            placeholder="Search by patient name..."
-            id="search-input"
-          />
-         </div> 
-        </section>
-        <section class="row gx-5 align-items-center patient-listings">
-        </section>
+      <article class="my-plans px-5">
+        <h2 class="welcome-heading">My Workout Plan</h2>
+        <section class="assigned-plans"></section>
       </article>
+      <footer>
+        <span>Stay consistent - your recovery depends on it!</span>
+      </footer>
     </main>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/patient-view/plans-frontend.js" type="module"></script>
   </body>
 </html>
