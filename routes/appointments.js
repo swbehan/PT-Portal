@@ -1,9 +1,9 @@
-import express from 'express';
+import { Router } from 'express';
 import mongodb from 'mongodb';
 import appointmentsCollection from '../db/appointment-db.js';
 
 const { ObjectId } = mongodb;
-const appointmentsRouter = express.Router();
+const appointmentsRouter = Router();
 
 appointmentsRouter.get('/appointments', async (req, res) => {
   try {

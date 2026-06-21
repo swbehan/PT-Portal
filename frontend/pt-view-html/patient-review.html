@@ -67,19 +67,34 @@
     <main>
       <article class="patients-display px-5">
         <h2>Patients</h2>
+        <section class="row gx-5 justify-content-center">
+          <div class="col-8">
+            <p>
+              All patients that have ever booked an appointment with you will
+              show up here! Read their reviews from workouts and submit
+              milestones for doctors to view
+            </p>
+          </div>
+        </section>
         <section class="row gx-5 justify-content-end">
-        <div class="col-6">
-          <input
-            type="search"
-            class="form-control form-control-lg"
-            placeholder="Search by patient name..."
-            id="search-input"
-          />
-         </div> 
+          <div class="col-6">
+            <input
+              type="search"
+              class="form-control form-control-lg"
+              placeholder="Search by patient name..."
+              id="search-input"
+            />
+          </div>
         </section>
-        <section class="row gx-5 align-items-center patient-listings">
-        </section>
+        <section
+          class="row gx-5 justify-content-center patient-listings"
+        ></section>
       </article>
     </main>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script
+      src="../js/pt-view/patient-review-frontend.js"
+      type="module"
+    ></script>
   </body>
 </html>

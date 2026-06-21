@@ -88,7 +88,7 @@ footer span {
     opacity: 1;
   }
 }
-
+article.review-outer-container h2,
 article.my-plans h2,
 article.build-plan h2,
 article.patients-display h2,
@@ -113,6 +113,7 @@ article.why-us h2 {
     5px 2px 0px lightgray;
 }
 
+article.review-outer-container h2,
 article.my-plans h2,
 article.build-plan h2,
 article.patients-display h2,
