@@ -23,7 +23,7 @@ section.assigned-plans {
 }
 
 .plan-card h3 {
-  font-size: 40px;
+  font-size: clamp(1.5rem, 4vw, 40px);
   letter-spacing: 2px;
 }
 
@@ -41,4 +41,10 @@ section.assigned-plans {
 .no-plans {
   text-align: center;
   font-size: 40px;
+}
+
+@media (max-width: 768px) {
+  article.my-plans {
+    margin-bottom: 4rem;
+  }
 }

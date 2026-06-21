@@ -55,7 +55,7 @@ const TITLES = [
 const plans = patients.map((patient, i) => ({
   title: TITLES[i % TITLES.length],
   patientId: patient._id, // real ObjectId reference
-  patientName: patient.name, // denormalized copy (Step 1)
+  patientName: patient.name, // denormalized copy
   exercises: EXERCISE_POOL.slice(0, 3 + (i % 3)).map((ex) => ({
     _id: new ObjectId(), // each embedded exercise gets its own id
     ...ex,

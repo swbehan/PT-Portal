@@ -1,4 +1,4 @@
-import Animation from "./animation.js";
+import Animation from './animation.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   const animationMain = Animation();
@@ -13,4 +13,3 @@ document.addEventListener('DOMContentLoaded', () => {
     animationMain.handleScroll('visible', '.what-is-pt-portal'),
   );
 });
- 

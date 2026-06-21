@@ -1,11 +1,10 @@
-import express from 'express';
-import workoutsCollection from '../db/workout-db.js';
-
+import { Router } from 'express';
 import mongodb from 'mongodb';
+import workoutsCollection from '../db/workout-db.js';
 
 const { ObjectId } = mongodb;
 
-const workoutRouter = express.Router();
+const workoutRouter = Router();
 
 // GET /workouts -> PT passes nothing (all plans); patient passes ?patientId=...
 workoutRouter.get('/workouts', async (req, res) => {
@@ -18,7 +17,7 @@ workoutRouter.get('/workouts', async (req, res) => {
     const workouts = await workoutsCollection.getWorkouts({ query });
     res.json({ workouts });
   } catch (error) {
-    console.error('Error fetcing workouts', error);
+    console.error('Error fetching workouts', error);
     res.status(500).json({ error: 'Internal Server Error', workouts: [] });
   }
 });

@@ -3,7 +3,7 @@ import usersCollection from '../db/users-db.js';
 
 const usersRouter = Router();
 
-// Returns the list of users for a role (used to populate dropdowns).
+// returns the list of users for a role (used to populate dropdowns).
 usersRouter.get('/users', async (req, res) => {
   try {
     const role = req.query.role || null;
@@ -15,7 +15,7 @@ usersRouter.get('/users', async (req, res) => {
   }
 });
 
-// Mocked auth: returns the single strict persona that is "signed in" for a role.
+// returns the single strict persona that is "signed in" for a role.
 usersRouter.get('/current-user', async (req, res) => {
   try {
     const role = req.query.role || null;

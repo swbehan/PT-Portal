@@ -2,11 +2,16 @@ import { connect } from './config.js';
 import mongodb from 'mongodb';
 import usersCollection from './users-db.js';
 
+const { ObjectId } = mongodb;
+
 function AppointmentsCollection({ collectionName = 'appointments' } = {}) {
   const me = {};
 
   const appointments = connect(collectionName);
 
+  // used by a pt to view appointments they have booked and still available
+  // used by a patient to view appointments that all pts have posted
+  // used by doctors to filter appointments by their id to get a list of patients they should see milestones for
   me.getAppointments = async ({
     query = {},
     pageSize = 10,
@@ -43,7 +48,7 @@ function AppointmentsCollection({ collectionName = 'appointments' } = {}) {
     }
   };
 
-  //only used by pt which has one user persona, so hardcoding Pt into post route
+  // used by PT, who maps to a single persona; the PT is resolved here via getCurrentUser('pt')
   me.postAppointments = async (appointmentData) => {
     try {
       const ptPersona = await usersCollection.getCurrentUser('pt');
@@ -67,8 +72,6 @@ function AppointmentsCollection({ collectionName = 'appointments' } = {}) {
     }
   };
 
-  const { ObjectId } = mongodb;
-
   //only used by pt, can only delete appointments before they are booked by a patient
   me.deleteAppointment = async (id) => {
     try {
@@ -85,6 +88,7 @@ function AppointmentsCollection({ collectionName = 'appointments' } = {}) {
   me.bookAppointment = async (id) => {
     try {
       const patientUser = await usersCollection.getCurrentUser('patient');
+      const doctorUser = await usersCollection.getCurrentUser('doctor');
 
       const result = await appointments.updateOne(
         { _id: new ObjectId(id) },
@@ -93,6 +97,8 @@ function AppointmentsCollection({ collectionName = 'appointments' } = {}) {
             booked: true,
             patientName: patientUser.name,
             patientId: patientUser._id,
+            referringDoctor: doctorUser.name,
+            referringDoctorId: doctorUser._id,
           },
         },
       );

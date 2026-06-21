@@ -3,6 +3,7 @@ import appointmentsRouter from './routes/appointments.js';
 import workoutRouter from './routes/workouts.js';
 import usersRouter from './routes/users.js';
 import reviewsRouter from './routes/reviews.js';
+import milestonesRouter from './routes/milestones.js';
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -15,6 +16,7 @@ app.use('/api', appointmentsRouter);
 app.use('/api', workoutRouter);
 app.use('/api', usersRouter);
 app.use('/api', reviewsRouter);
+app.use('/api', milestonesRouter);
 
 app.listen(PORT, () => {
   console.log(`Created a server listening on port ${PORT}`);

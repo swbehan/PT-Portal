@@ -15,27 +15,27 @@ The following features will be available:
 
 **User Personas:**
 
-*Physical Therapist* Goal: Manage my patients' recovery in one place instead of juggling Google Docs and email. Needs: A way to build and assign workout plans with video guidance, track patient progress through session reviews, and control my appointment availability.
+_Physical Therapist_ Goal: Manage my patients' recovery in one place instead of juggling Google Docs and email. Needs: A way to build and assign workout plans with video guidance, track patient progress through session reviews, and control my appointment availability.
 
-*Patient* Goal: Stay on top of my recovery program and keep my PT informed on how I'm feeling. Needs: A clear view of my assigned exercises, a simple form to log how each session went, and a way to book my next appointment without emailing back and forth.
+_Patient_ Goal: Stay on top of my recovery program and keep my PT informed on how I'm feeling. Needs: A clear view of my assigned exercises, a simple form to log how each session went, and a way to book my next appointment without emailing back and forth.
 
-*Referring Doctor* Goal: Stay informed on my patient's PT progress without being involved day-to-day. Needs: A read-only view of milestones the PT has logged for my referred patient.
+_Referring Doctor_ Goal: Stay informed on my patient's PT progress without being involved day-to-day. Needs: A read-only view of milestones the PT has logged for my referred patient.
 
 ---
 
 **User Stories:**
 
-*View Assigned Workout* As a patient, I need to see the exercises my PT has assigned this week, including descriptions and video links, so I know exactly what to do at home between sessions.
+_View Assigned Workout_ As a patient, I need to see the exercises my PT has assigned this week, including descriptions and video links, so I know exactly what to do at home between sessions.
 
-*Submit a Session Review* As a patient, after completing a session I want to submit a short review (rating + notes) so my PT can monitor my progress and adjust my plan if needed.
+_Submit a Session Review_ As a patient, after completing a session I want to submit a short review (rating + notes) so my PT can monitor my progress and adjust my plan if needed.
 
-*Book an Appointment* As a patient, I want to see my PT's open availability and claim a slot so I don't have to coordinate over email.
+_Book an Appointment_ As a patient, I want to see my PT's open availability and claim a slot so I don't have to coordinate over email.
 
-*Create a Workout Plan* As a PT, I want to build a weekly workout plan by adding exercises with descriptions and video links, then assign it to a specific patient.
+_Create a Workout Plan_ As a PT, I want to build a weekly workout plan by adding exercises with descriptions and video links, then assign it to a specific patient.
 
-*View Patient Reviews* As a PT, I want to read the session reviews my patients submit so I can track their recovery progress and log milestones when they hit a goal.
+_View Patient Reviews_ As a PT, I want to read the session reviews my patients submit so I can track their recovery progress and log milestones when they hit a goal.
 
-*View Milestones* As a referring doctor, I want a simple read-only view of milestones my patient's PT has logged so I can stay informed without being in the weeds.
+_View Milestones_ As a referring doctor, I want a simple read-only view of milestones my patient's PT has logged so I can stay informed without being in the weeds.
 
 ---
 

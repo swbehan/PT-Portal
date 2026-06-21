@@ -10,17 +10,19 @@ appointmentsRouter.get('/appointments', async (req, res) => {
     const booked = req.query.booked === 'true';
     const ptId = req.query.ptId || null;
     const patientId = req.query.patientId || null;
-    const filteredByDate = req.query.filteredByDate !== 'false'
+    const filteredByDate = req.query.filteredByDate !== 'false';
+    const referringDoctorId = req.query.referringDoctorId || null;
 
     const query = { booked };
     if (ptId) query.ptId = new ObjectId(ptId);
     if (patientId) query.patientId = new ObjectId(patientId);
+    if (referringDoctorId)
+      query.referringDoctorId = new ObjectId(referringDoctorId);
 
     const appointments = await appointmentsCollection.getAppointments({
       query,
       filteredByDate,
     });
-    console.log(appointments);
     res.json({
       appointments,
     });
@@ -32,7 +34,6 @@ appointmentsRouter.get('/appointments', async (req, res) => {
 
 appointmentsRouter.post('/appointments', async (req, res) => {
   try {
-    console.log(req.body);
     const result = await appointmentsCollection.postAppointments(req.body);
     res
       .status(201)
@@ -59,9 +60,7 @@ appointmentsRouter.delete('/appointments/:id', async (req, res) => {
 appointmentsRouter.put('/appointments/:id', async (req, res) => {
   try {
     const { id } = req.params;
-    const result = await appointmentsCollection.bookAppointment(
-      id,
-    );
+    const result = await appointmentsCollection.bookAppointment(id);
     res
       .status(200)
       .json({ message: 'Appointment booked successfully', result });

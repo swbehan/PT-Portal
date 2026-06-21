@@ -14,7 +14,7 @@ section.what-is-pt-portal p {
 
 article.pt-portal-users section div.persona {
   text-align: center;
-  font-size: 80px;
+  font-size: clamp(2rem, 8vw, 80px);
   text-decoration: underline gray 5px;
   text-underline-offset: 10px;
 }
@@ -30,14 +30,10 @@ article.pt-portal-users span.pt-portal-title {
 
 div img.persona-img {
   width: 90%;
-  height: 425px;
+  max-width: 100%;
+  aspect-ratio: 3 / 2;
   object-fit: cover;
   border-radius: 41px;
   margin-bottom: 80px;
   filter: grayscale(100%) brightness(0.8);
-}
-
-footer span {
-  text-align: center;
-  display: block;
 }

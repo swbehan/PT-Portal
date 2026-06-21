@@ -38,7 +38,7 @@ div label + input + span {
 }
 
 .toast-header {
-  font-size: 30px;
+  font-size: clamp(1.25rem, 3vw, 30px);
 }
 
 .toast-body {
@@ -59,7 +59,7 @@ section.listed-availability div.single-unbooked-appointment {
   border-radius: 20px;
   padding: 8px 30px;
   text-align: center;
-  font-size: 55px;
+  font-size: clamp(1.5rem, 4vw, 55px);
 }
 
 .cancel-btn {
@@ -82,8 +82,8 @@ article.current-availability-not-booked {
 }
 
 .no-upcoming-availability {
-    text-align: center;
-    font-size: 40px;
+  text-align: center;
+  font-size: 40px;
 }
 
 /* =============================================================================
@@ -91,8 +91,8 @@ article.current-availability-not-booked {
    ============================================================================= */
 
 section.booked-schedule {
-    margin-top: 80px;
-    margin-bottom: 120px;
+  margin-top: 80px;
+  margin-bottom: 120px;
 }
 
 section.booked-schedule div.single-booked-appointment {
@@ -109,13 +109,42 @@ section.booked-schedule div.single-booked-appointment {
   font-size: 25px;
   letter-spacing: 2px;
   color: black;
-  text-shadow:
-    5px 2px 0px lightgray;
+  text-shadow: 5px 2px 0px lightgray;
 }
 
 .single-booked-appointment span {
-    display: block;
-    text-align: center;
-    font-weight: bold;
-    color: black;
+  display: block;
+  text-align: center;
+  font-weight: bold;
+  color: black;
+}
+
+/* =============================================================================
+   MOBILE ADJUSTMENTS
+   ============================================================================= */
+
+@media (max-width: 576px) {
+  .submit-btn {
+    width: 100%;
+    box-shadow: 8px -8px 0px lightgray;
+  }
+
+  .cancel-btn {
+    padding: 16px 24px;
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  article.set-availability {
+    margin-bottom: 4rem;
+  }
+
+  article.current-availability-not-booked {
+    margin-bottom: 4rem;
+  }
+
+  section.booked-schedule {
+    margin-bottom: 4rem;
+  }
 }

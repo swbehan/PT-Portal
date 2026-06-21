@@ -2,17 +2,17 @@
    REVIEW MAIN SECTION HEADER
    ============================================================================= */
 .review-outer-container h2 {
-    margin-bottom: 70px;
+  margin-bottom: 70px;
 }
 
 article.review-outer-container p {
-    text-align: center;
-    font-size: 30px;
-    margin-bottom: 60px;
+  text-align: center;
+  font-size: 30px;
+  margin-bottom: 60px;
 }
 
 article.review-outer-container {
-    margin-bottom: 100px;
+  margin-bottom: 100px;
 }
 
 /* =============================================================================
@@ -20,27 +20,27 @@ article.review-outer-container {
    ============================================================================= */
 
 .review-card-content {
-    background-color: gray;
-    color: white;
-    border-radius: 20px;
-    padding: 20px 30px;
-    margin-bottom: 20px;
-  }
+  background-color: gray;
+  color: white;
+  border-radius: 20px;
+  padding: 20px 30px;
+  margin-bottom: 20px;
+}
 
 .review-submit-form {
   margin-top: 30px;
 }
 
 form label {
-    color: black;
-    font-size: 25px;
+  color: black;
+  font-size: 25px;
 }
 
 .review-submit-form h5 {
   background-color: black;
   padding: 10px;
   border-radius: 15px;
-  font-size: 40px;
+  font-size: clamp(1.5rem, 4vw, 40px);
   margin-bottom: 40px;
 }
 
@@ -62,3 +62,9 @@ form button.submit-btn:hover {
   border: 1px solid black;
 }
 
+@media (max-width: 576px) {
+  form button.submit-btn {
+    width: 100%;
+    box-shadow: 8px -8px 0px lightgray;
+  }
+}

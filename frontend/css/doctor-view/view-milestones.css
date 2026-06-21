@@ -1,0 +1,68 @@
+/* =============================================================================
+   MILESTONE LIST & ENTRIES
+   ============================================================================= */
+
+.milestone-outer-container h2 {
+  margin-bottom: 70px;
+}
+
+article.milestone-outer-container p {
+  text-align: center;
+  font-size: 30px;
+  margin-bottom: 60px;
+}
+
+article.milestone-outer-container {
+  margin-bottom: 100px;
+}
+
+.milestone-entry {
+  background-color: white;
+  border-radius: 12px;
+  padding: 16px 20px;
+  margin-bottom: 25px;
+  margin-top: 25px;
+  border: 1px solid #e0e0e0;
+}
+
+.milestone-text {
+  color: black;
+  font-size: 15px;
+  margin: 0;
+}
+
+.milestone-date {
+  color: gray;
+  font-size: 12px;
+  text-align: center;
+}
+
+/* =============================================================================
+   MILESTONE CARD (per patient)
+   ============================================================================= */
+
+.milestone-card {
+  background-color: gray;
+  color: white;
+  border-radius: 20px;
+  padding: 20px 30px;
+  margin-bottom: 20px;
+}
+
+.milestone-card h4 {
+  text-align: center;
+  font-size: clamp(1.5rem, 4vw, 40px);
+  letter-spacing: 2px;
+  color: black;
+  text-shadow: 5px 2px 0px lightgray;
+  margin-bottom: 40px;
+}
+
+.patient-avatar {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  display: block;
+  margin: 0 auto 10px;
+  margin-bottom: 40px;
+}

@@ -40,7 +40,7 @@ header.heading {
 nav.navbar .navbar-brand,
 footer span {
   padding-left: 30px;
-  font-size: 55px;
+  font-size: clamp(1.75rem, 6vw, 55px);
   letter-spacing: 2px;
   color: white;
   text-shadow:
@@ -50,7 +50,7 @@ footer span {
 
 #navbarSupportedContent .nav-link {
   padding: 8px 30px;
-  font-size: 35px;
+  font-size: clamp(1rem, 3vw, 35px);
   color: white;
   text-shadow:
     2px 1px 0px gray,
@@ -69,7 +69,7 @@ footer span {
 
 #navbarSupportedContent .nav-link.sign-out {
   padding: 8px 30px;
-  font-size: 35px;
+  font-size: clamp(1rem, 3vw, 35px);
   color: red;
   text-shadow: 2px 1px 0px lightgray;
 }
@@ -88,6 +88,8 @@ footer span {
     opacity: 1;
   }
 }
+
+article.milestone-outer-container h2,
 article.review-outer-container h2,
 article.my-plans h2,
 article.build-plan h2,
@@ -104,7 +106,7 @@ article.sign-in h2,
 article.why-us h2 {
   text-align: center;
   display: block;
-  font-size: 125px;
+  font-size: clamp(2.5rem, 12vw, 125px);
   letter-spacing: 2px;
   margin-top: 100px;
   color: black;
@@ -113,6 +115,7 @@ article.why-us h2 {
     5px 2px 0px lightgray;
 }
 
+article.milestone-outer-container h2,
 article.review-outer-container h2,
 article.my-plans h2,
 article.build-plan h2,
@@ -126,7 +129,7 @@ section.pt-portal-platform h2,
 article.pt-portal-users h2 {
   text-align: center;
   display: block;
-  font-size: 90px;
+  font-size: clamp(2rem, 9vw, 90px);
   letter-spacing: 2px;
   margin-top: 100px;
   color: black;

@@ -7,9 +7,9 @@ article.patients-display h2 {
 }
 
 article.patients-display p {
-    text-align: center;
-    font-size: 30px;
-    margin-bottom: 60px;
+  text-align: center;
+  font-size: 30px;
+  margin-bottom: 60px;
 }
 
 .no-patients-booked {
@@ -31,7 +31,7 @@ article.patients-display p {
 
 .patient-card h4 {
   text-align: center;
-  font-size: 40px;
+  font-size: clamp(1.5rem, 4vw, 40px);
   letter-spacing: 2px;
   color: black;
   text-shadow: 5px 2px 0px lightgray;
@@ -60,7 +60,7 @@ article.patients-display p {
   background-color: black;
   padding: 10px;
   border-radius: 15px;
-  font-size: 40px;
+  font-size: clamp(1.5rem, 4vw, 40px);
   margin-bottom: 40px;
 }
 
@@ -82,39 +82,47 @@ form button.submit-btn:hover {
   border: 1px solid black;
 }
 
-
 .review-entry {
-    background-color: white;
-    border-radius: 12px;
-    padding: 16px 20px;
-    margin-bottom: 25px;
-    margin-top: 25px;
-    border: 1px solid #e0e0e0;
+  background-color: white;
+  border-radius: 12px;
+  padding: 16px 20px;
+  margin-bottom: 25px;
+  margin-top: 25px;
+  border: 1px solid #e0e0e0;
+}
+
+.review-header {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.review-rating {
+  background-color: black;
+  color: white;
+  border-radius: 20px;
+  padding: 4px 14px;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.review-date {
+  color: gray;
+  font-size: 12px;
+}
+
+.review-text {
+  color: black;
+  font-size: 15px;
+  margin: 0;
+}
+
+@media (max-width: 576px) {
+  form button.submit-btn {
+    width: 100%;
+    box-shadow: 8px -8px 0px lightgray;
   }
-  
-  .review-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 8px;
-  }
-  
-  .review-rating {
-    background-color: black;
-    color: white;
-    border-radius: 20px;
-    padding: 4px 14px;
-    font-weight: 500;
-    font-size: 14px;
-  }
-  
-  .review-date {
-    color: gray;
-    font-size: 12px;
-  }
-  
-  .review-text {
-    color: black;
-    font-size: 15px;
-    margin: 0;
-  }
+}

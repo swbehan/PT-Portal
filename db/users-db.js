@@ -6,7 +6,7 @@ import { connect } from './config.js';
 export const MOCK_PERSONAS = {
   patient: 'Sofia Terry',
   pt: 'Dr. Sarah Nikki',
-  // doctor: '<add when a doctor persona/page exists>',
+  doctor: 'Dr. Kaminski',
 };
 
 function UsersCollection({ collectionName = 'users' } = {}) {

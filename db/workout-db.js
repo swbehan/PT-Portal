@@ -68,7 +68,7 @@ function WorkoutsCollection({ collectionName = 'workouts' } = {}) {
     }
   };
 
-  // Only used by the PT to delete an existing plan already posted
+  // Only used by the PT to remove a single exercise from an existing plan
   me.deleteExercise = async (workoutId, exerciseId) => {
     try {
       const result = await workouts.updateOne(
@@ -77,7 +77,7 @@ function WorkoutsCollection({ collectionName = 'workouts' } = {}) {
       );
       return result;
     } catch (error) {
-      console.error('Error deleting exerice from workout in MongoDb', error);
+      console.error('Error deleting exercise from workout in MongoDB', error);
       throw error;
     }
   };

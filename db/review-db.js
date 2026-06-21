@@ -8,7 +8,7 @@ function ReviewsCollection({ collectionName = 'reviews' } = {}) {
 
   const reviews = connect(collectionName);
 
-  // used by the pt and the doctor to view the patient reviews about their progress and exercise feedback
+  // used by the pt to view the patient reviews about their progress and exercise feedback
   me.getReviews = async ({ query = {}, pageSize = 20, page = 0 } = {}) => {
     try {
       const data = await reviews
@@ -23,7 +23,7 @@ function ReviewsCollection({ collectionName = 'reviews' } = {}) {
     }
   };
 
-  // used by the patient to post a review for the PT/doctor to see
+  // used by the patient to post a review for the PT to see
   me.postReviewToDb = async (reviewData) => {
     try {
       const newReviewData = {
@@ -35,7 +35,7 @@ function ReviewsCollection({ collectionName = 'reviews' } = {}) {
       console.log('Posted review to MongoDB 📝');
       return result;
     } catch (error) {
-      console.log('Error posting new review to MongoDB', error);
+      console.error('Error posting new review to MongoDB', error);
       throw error;
     }
   };

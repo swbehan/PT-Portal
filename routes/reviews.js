@@ -24,7 +24,6 @@ reviewsRouter.get('/reviews', async (req, res) => {
 
 reviewsRouter.post('/reviews', async (req, res) => {
   try {
-    console.log(req.body);
     const result = await reviewsCollection.postReviewToDb(req.body);
     res.status(201).json({ message: 'Successfully posted review', result });
   } catch (error) {

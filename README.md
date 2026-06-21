@@ -36,6 +36,18 @@ Physical therapy offices often manage patient care through scattered Google Docs
 
 - Read-only view of milestones the PT has logged for their referred patient
 
+## How appointments, milestones, and reviews connect
+
+These three pieces are what tie the roles together, so here is how a typical patient moves through the app.
+
+**Appointments** start with the physical therapist. A PT posts open availability, which creates an unbooked appointment with a date, time, and location but no patient attached yet. A patient browses a PT's open slots and books one, which flips the appointment to booked and stamps it with the patient and the doctor who referred them. From then on the same appointment shows up in three places: the PT's schedule, the patient's upcoming appointments, and the doctor's list of referred patients.
+
+**Reviews** flow from the patient back to the PT. After a session the patient writes a short review with a rating, and it gets attached to that patient. The PT sees every review left by the patients on their schedule, which gives them feedback on how exercises and sessions are landing.
+
+**Milestones** flow from the PT to the doctor. As a patient makes progress the PT logs short recovery notes against that patient. The referring doctor opens their view and sees the patients they sent over along with the milestones logged for each one, so they can follow recovery without being involved day to day.
+
+A patient is the shared thread through all three. A booked appointment links a patient to both a PT and a referring doctor, the patient's reviews surface to that PT, and the milestones that PT logs surface to that doctor.
+
 ## Tech Stack
 
 - **Runtime / Server:** Node.js + Express (ES modules)
@@ -102,6 +114,14 @@ Populate the `workouts` collection with sample plans linked to real patients:
 npm run seed
 ```
 
+Populate the appointment flow with mock physical therapists, doctors, booked and open appointments, milestones, and reviews:
+
+```bash
+npm run seed:data
+```
+
+This second script leaves the existing patients untouched and adds data on top, including a connected set for the three demo personas so every role has something to look at right away.
+
 ### 4. Run the app
 
 ```bash
@@ -122,7 +142,7 @@ _Deployment URL: TBD_
 
 ```
 db/        MongoDB connection + per-collection data modules
-routes/    Express routers (appointments, workouts, users)
+routes/    Express routers (appointments, workouts, users, reviews, milestones)
 frontend/  Client-side pages, JS, and CSS modules
 scripts/   One-off utilities (e.g. database seeding)
 screenshots/ Screenshots of the application to supply the readme
@@ -131,8 +151,7 @@ server.js  Express app entry point
 
 ## AI Usage
 
-
-Julian: 
+Julian:
 
 I used an AI coding assistant (Claude Code) during development, primarily as a guided tutor and code reviewer rather than to generate the project wholesale. Specifically, it was used to:
 
@@ -142,6 +161,10 @@ I used an AI coding assistant (Claude Code) during development, primarily as a g
 - Help write the database seed script and this README
 
 All code was reviewed and understood by me, and the architectural decisions were all mine.
+
+Sean:
+
+I used an AI coding assistant (Claude Code) to build the database seeding script that fills the app with mock data. It read the existing collections to match the document shapes, generated the physical therapists, doctors, appointments, milestones, and reviews, and wired up a connected set of data for the three demo personas so each role has something to look at on first run. I reviewed the script and the data it produced to make sure it lined up with how the app actually works. All decisons about structure regarding the script were done by me.
 
 ## License
 

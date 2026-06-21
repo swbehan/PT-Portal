@@ -4,31 +4,27 @@
 article.what-you-love h2 {
   display: block;
   text-align: center;
-  font-size: 80px;
+  font-size: clamp(2rem, 8vw, 80px);
   letter-spacing: 1px;
   margin-top: 70px;
   animation: slideDown 1.8s ease forwards;
   margin-bottom: 70px;
 }
 
-@keyframes slideDown {
-  from {
-    transform: translateY(-50px);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
-
 .training-images div img {
   width: 90%;
+  max-width: 100%;
   height: 425px;
   object-fit: cover;
   border-radius: 41px;
   box-shadow: 30px -30px 0px gray;
   animation: slideDown 2.8s ease backwards;
+}
+
+@media (max-width: 768px) {
+  .training-images div img {
+    height: 260px;
+  }
 }
 
 .center-training-img {
@@ -41,7 +37,7 @@ article.what-you-love h2 {
    ============================================================================= */
 
 .pt-portal-highlights section div {
-  font-size: 60px;
+  font-size: clamp(1.5rem, 6vw, 60px);
   margin-bottom: 150px;
 }
 
@@ -91,14 +87,16 @@ article.why-us section div img {
   text-align: center;
   color: white;
   letter-spacing: 1px;
-  font-size: 40px;
+  font-size: clamp(1.5rem, 4vw, 40px);
   font-style: italic;
 }
 
 .sign-in-cards .card img {
   filter: grayscale(100%) brightness(0.8);
-  width: 200px;
-  height: 200px;
+  width: 80%;
+  max-width: 200px;
+  aspect-ratio: 1 / 1;
+  height: auto;
   object-fit: cover;
   border-radius: 25%;
   margin: 20px auto 0;
@@ -124,3 +122,9 @@ article.why-us section div img {
   border: 1px solid black;
 }
 
+@media (max-width: 768px) {
+  .sign-in-btn {
+    width: 100%;
+    box-shadow: 8px -8px 0px lightgray;
+  }
+}
