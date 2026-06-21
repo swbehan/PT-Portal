@@ -48,6 +48,18 @@ These three pieces are what tie the roles together, so here is how a typical pat
 
 A patient is the shared thread through all three. A booked appointment links a patient to both a PT and a referring doctor, the patient's reviews surface to that PT, and the milestones that PT logs surface to that doctor.
 
+## Limitations
+
+PT Portal uses mocked authentication rather than real accounts and passwords. There is no real login flow. Instead, each of the three roles is tied to one fixed demo user, and picking a role on the sign-in page signs you in as that user for the session. The three users are:
+
+- **Patient:** Sofia Terry
+- **Physical Therapist:** Dr. Sarah Nikki
+- **Doctor:** Dr. Kaminski
+
+Because of this, the app always shows the data that belongs to those three users. The PT pages show Dr. Sarah Nikki's schedule and the reviews from her patients, the patient pages show Sofia Terry's plans and appointments, and the doctor page shows the milestones for the patients Dr. Kaminski referred. Switching roles changes which of these three users you are acting as, but you cannot register or sign in as anyone else. These personas are defined in one place, `MOCK_PERSONAS` in `db/users-db.js`.
+
+That said, you will also see data tied to other physical therapists, doctors, and patients that the `npm run seed:data` script injects. This extra data exists so the three signed-in users have a fuller, more realistic experience. For example, the patient can choose from several physical therapists when booking, and the PT's booked patients come with real referring doctors and reviews instead of an empty app.
+
 ## Tech Stack
 
 - **Runtime / Server:** Node.js + Express (ES modules)
@@ -131,6 +143,24 @@ npm start       # production
 ```
 
 Then open **http://localhost:3000** in your browser.
+
+## Usage
+
+Because the app signs you in as one of three fixed users (see [Limitations](#limitations)), the data only lines up across roles if you post and book against the matching hardcoded user. Keep this in mind as you click around:
+
+- **Plans:** When you are the PT, assign a workout plan to **Sofia Terry** if you want the Patient view to show it. The patient page only loads plans assigned to Sofia.
+- **Appointments:** As the Patient, book a slot from **Dr. Sarah Nikki's** open availability. A slot from one of the seeded PTs will not appear on the PT page, since that page only shows Dr. Sarah Nikki's schedule. Every appointment you book is automatically referred by **Dr. Kaminski**.
+- **Reviews:** Reviews are posted as the Patient (Sofia Terry) and show up on the PT's patient-review page once Sofia is booked with Dr. Sarah Nikki.
+- **Milestones:** As the PT, log milestones for one of your booked patients. The Doctor view (Dr. Kaminski) then shows those milestones for the patients he referred.
+
+A quick end-to-end run that touches all three roles:
+
+1. Sign in as the **PT**, post an open availability slot, and assign a workout plan to Sofia Terry.
+2. Sign in as the **Patient** (Sofia Terry), book that slot, view the assigned plan, and submit a review.
+3. Back as the **PT**, read Sofia's review and log a milestone for her.
+4. Sign in as the **Doctor** (Dr. Kaminski) to see that milestone under your referred patients.
+
+That being said, the database still updates every document and collection correctly no matter which user you act against. The writes always succeed; the UI just will not surface them when they are tied to a user other than the three hardcoded ones. This is a known limitation that we hope to fix in the future by adding real per-user accounts.
 
 ## Deployment
 
