@@ -7,7 +7,6 @@ function AppointmentsCollection({ collectionName = 'appointments' } = {}) {
 
   const appointments = connect(collectionName);
 
-  // Only fetches appointments that have not already passed
   me.getAppointments = async ({
     query = {},
     pageSize = 10,
