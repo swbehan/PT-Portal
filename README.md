@@ -2,6 +2,10 @@
 
 PT Portal is a web application that replaces the Google Docs and email workflow used by physical therapy offices. Physical therapists build and assign workout plans, patients book appointments and submit session reviews, and referring doctors get a read-only view of patient milestones. The app supports three roles — **PT**, **Patient**, and **Doctor** — selectable from the sign-in page.
 
+## Demo Video
+
+[Watch the demo on YouTube](https://youtu.be/aT5Ky-WPlhw)
+
 ## Authors
 
 - **Sean Behan**
