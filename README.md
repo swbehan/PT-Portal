@@ -196,6 +196,8 @@ I used an AI coding assistant (Claude Code) during development, primarily as a g
 
 All code was reviewed and understood by me, and the architectural decisions were all mine.
 
+"The starting prompt was "As I work though this project please guide me and help with any concepts that I ask you about, do not write the code for me, I want to write and design the code base. Please act if you were a professor helping a student at office hours, do not give me the anwser to questions but rather guide me in understanding the concepts."
+
 Sean:
 
 I used an AI coding assistant (Claude Code) to build the database seeding script that fills the app with mock data. It read the existing collections to match the document shapes, generated the physical therapists, doctors, appointments, milestones, and reviews, and wired up a connected set of data for the three demo personas so each role has something to look at on first run. I reviewed the script and the data it produced to make sure it lined up with how the app actually works. All decisons about structure regarding the script were done by me.
