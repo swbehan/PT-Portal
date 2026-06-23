@@ -196,7 +196,7 @@ I used an AI coding assistant (Claude Code) during development, primarily as a g
 
 All code was reviewed and understood by me, and the architectural decisions were all mine.
 
-"The starting prompt was "As I work though this project please guide me and help with any concepts that I ask you about, do not write the code for me, I want to write and design the code base. Please act if you were a professor helping a student at office hours, do not give me the anwser to questions but rather guide me in understanding the concepts."
+The starting prompt was: "As I work though this project please guide me and help with any concepts that I ask you about, do not write the code for me, I want to write and design the code base. Please act if you were a professor helping a student at office hours, do not give me the anwser to questions but rather guide me in understanding the concepts."
 
 Sean:
 
