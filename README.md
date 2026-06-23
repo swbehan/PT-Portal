@@ -168,9 +168,9 @@ That being said, the database still updates every document and collection correc
 
 ## Deployment
 
-<!-- TODO: add the public deployment URL once the app is hosted -->
+The app is deployed on Render: **https://pt-portal-tff4.onrender.com/**
 
-_Deployment URL: TBD_
+> Note: the free Render instance spins down when idle, so the first request after a period of inactivity may take ~30–60 seconds to wake up.
 
 ## Project Structure
 
