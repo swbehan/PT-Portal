@@ -1,5 +1,5 @@
 # PT Portal
-
+-> Feedback 1: Great introduction/description of your project! This would be a strong use-case application that could potentially replace google docs and email workflows in practice! It matches well to the homepage of the website.
 PT Portal is a web application that replaces the Google Docs and email workflow used by physical therapy offices. Physical therapists build and assign workout plans, patients book appointments and submit session reviews, and referring doctors get a read-only view of patient milestones. The app supports three roles — **PT**, **Patient**, and **Doctor** — selectable from the sign-in page.
 
 ## Demo Video
@@ -40,6 +40,7 @@ Physical therapy offices often manage patient care through scattered Google Docs
 
 - Read-only view of milestones the PT has logged for their referred patient
 
+-> Feedback 2: This is another strong section that gives the overview of how the PT Portal workflow works on the website, great job!
 ## How appointments, milestones, and reviews connect
 
 These three pieces are what tie the roles together, so here is how a typical patient moves through the app.
@@ -53,7 +54,7 @@ These three pieces are what tie the roles together, so here is how a typical pat
 A patient is the shared thread through all three. A booked appointment links a patient to both a PT and a referring doctor, the patient's reviews surface to that PT, and the milestones that PT logs surface to that doctor.
 
 ## Limitations
-
+-> Feedback 3: Very well done, I like the workaround of the login flow and how you guy's approached the mock authentication scheme. Very clever and creative giving the limitation section.
 PT Portal uses mocked authentication rather than real accounts and passwords. There is no real login flow. Instead, each of the three roles is tied to one fixed demo user, and picking a role on the sign-in page signs you in as that user for the session. The three users are:
 
 - **Patient:** Sofia Terry
@@ -97,7 +98,7 @@ That said, you will also see data tied to other physical therapists, doctors, an
 ![Booking an appointment](./screenshots/PT-PATIENT-BOOK.png)
 
 ## Getting Started
-
+-> Feedback 4: Great job on your getting started section, it gives multiple options on how to run your application, even while mentioning an optional setup, which is useful.
 ### Prerequisites
 
 - [Node.js](https://nodejs.org/) (v18+)
@@ -205,3 +206,4 @@ I used an AI coding assistant (Claude Code) to build the database seeding script
 ## License
 
 This project is licensed under the [MIT License](./LICENSE).
+-> Feedback 5: Excellent job on your README.md file, I have no critiques, just praises. Great job everyone!
