@@ -1,3 +1,4 @@
+-> Great job with using the addEventListener() function and creating a module for PatientAppointments. It is well structured.
 document.addEventListener('DOMContentLoaded', () => {
   function PatientAppointments() {
     const me = {};
