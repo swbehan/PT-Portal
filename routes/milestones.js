@@ -4,7 +4,7 @@ import mongodb from 'mongodb';
 const { ObjectId } = mongodb;
 
 const milestonesRouter = Router();
-
+-> Great job with the CRUD operations for each route and not mistakingly doing server-side rendering rather than client-side rendering!
 milestonesRouter.get('/milestones', async (req, res) => {
   try {
     const patientId = req.query.patientId || null;
