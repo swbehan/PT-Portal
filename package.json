@@ -3,6 +3,8 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  -> Feedback: "type": "module", should be up here instead, I don't know if its placement makes a difference at runtime, but this is minor. 
+  -> Feedback: Great job with the scripts section including the methods in which you can seed/import your collections and run your application.
   "scripts": {
     "start": "node server.js",
     "dev": "nodemon server.js",
